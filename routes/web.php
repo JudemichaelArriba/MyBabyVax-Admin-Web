@@ -2,16 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return redirect()->route('login');
 });
 
-// Dashboard
-Route::get('/dashboard', function () {
-    return view('pages.dashboard'); // make sure the path matches your blade file
-})->name('dashboard');
+// Show login form
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+// Handle login submission
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function() {
+    return view('pages.dashboard'); // your dashboard blade
+})->middleware('auth')->name('dashboard');
+
+
 
 
 Route::get('/appointments', function () {
