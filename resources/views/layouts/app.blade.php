@@ -49,10 +49,10 @@
 <body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
     <div class="flex h-screen w-full">
 
-        {{-- Sidebar --}}
+     
         @include('components.sidebar') {{-- Make sure sidebar has class h-full --}}
 
-        {{-- Main content --}}
+     
         <main class="flex-1 flex flex-col p-6 lg:p-8 overflow-y-auto">
             <header class="flex flex-wrap justify-between items-center gap-4 mb-6">
                 <div class="flex flex-col gap-1">
@@ -72,7 +72,7 @@
                 </div>
             </header>
 
-            {{-- Page content --}}
+       
             @yield('content')
         </main>
     </div>

@@ -8,7 +8,7 @@
 @section('content')
 <div class="flex flex-col flex-1 space-y-4 h-full">
 
-    {{-- Dashboard cards --}}
+  
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         @php
             $cards = [
@@ -31,7 +31,7 @@
         @endforeach
     </div>
 
-    {{-- Upcoming Appointments Table --}}
+   
     <div class="flex flex-col bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark flex-1">
         <div class="p-4 border-b border-border-light dark:border-border-dark">
             <h2 class="text-base font-bold">Upcoming Appointments (Today)</h2>

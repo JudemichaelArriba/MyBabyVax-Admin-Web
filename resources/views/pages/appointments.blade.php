@@ -7,7 +7,7 @@
 @section('content')
 <div class="flex flex-col flex-1 gap-4 h-full">
 
-    {{-- Filters and Calendar --}}
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div class="lg:col-span-1 flex flex-col gap-4">
 
@@ -25,7 +25,6 @@
                 </div>
             </div>
 
-            {{-- Filters --}}
             <div class="bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark p-4">
                 <h2 class="text-sm font-bold mb-2">Filters</h2>
                 <div class="space-y-3">
@@ -42,7 +41,7 @@
             </div>
         </div>
 
-        {{-- Appointments Table --}}
+   
         <div class="lg:col-span-2 flex flex-col bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
             <div class="p-4 border-b border-border-light dark:border-border-dark">
                 <h2 class="text-sm font-bold">Appointments</h2>
