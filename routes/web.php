@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\DashboardController;
 
 
 Route::get('/', function () {
@@ -19,10 +19,10 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', function() {
-    return view('pages.dashboard'); // your dashboard blade
-})->middleware('auth')->name('dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
 
 
 

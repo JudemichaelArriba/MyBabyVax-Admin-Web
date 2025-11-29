@@ -2,14 +2,25 @@
     <div class="flex flex-col justify-between p-4 h-full">
         <!-- Top section: Profile & Navigation -->
         <div class="flex flex-col gap-4">
+            @php
+                $user = Auth::user();
+                $profileImage = $user->profile 
+                    ? 'data:image/png;base64,' . base64_encode($user->profile) 
+                    : null;
+            @endphp
+
             <!-- Profile -->
             <div class="flex items-center gap-3 p-2">
-                <!-- Placeholder profile circle -->
-                <div class="bg-gray-300 dark:bg-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
-                    <span class="text-white font-bold">A</span>
-                </div>
+                <!-- Profile image or placeholder -->
+                @if($profileImage)
+                    <img src="{{ $profileImage }}" alt="Profile" class="rounded-full w-10 h-10 object-cover">
+                @else
+                    <div class="bg-gray-300 dark:bg-gray-600 rounded-full w-10 h-10 flex items-center justify-center">
+                        <span class="text-white font-bold">{{ strtoupper(substr($user->name,0,1)) }}</span>
+                    </div>
+                @endif
                 <div class="flex flex-col">
-                    <h1 class="text-text-light dark:text-text-dark text-base font-bold leading-normal">Admin Name</h1>
+                    <h1 class="text-text-light dark:text-text-dark text-base font-bold leading-normal">{{ $user->name }}</h1>
                     <p class="text-primary text-sm font-normal leading-normal">System Administrator</p>
                 </div>
             </div>
@@ -47,7 +58,7 @@
             @php
                 $bottomMenu = [
                     ['route'=>'settings','icon'=>'settings','label'=>'Settings'],
-                    ['route'=>'logout','icon'=>'logout','label'=>'Log Out','link'=>'#'],
+                    ['route'=>'logout','icon'=>'logout','label'=>'Log Out','link'=>'#', 'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();"],
                 ];
             @endphp
             @foreach($bottomMenu as $item)
@@ -55,11 +66,17 @@
                     $isActive = isset($item['route']) ? Request::routeIs($item['route']) : false;
                 @endphp
                 <a href="{{ $item['link'] ?? route($item['route']) }}" 
+                   @if(isset($item['onclick'])) onclick="{{ $item['onclick'] }}" @endif
                    class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10">
                     <span class="material-symbols-outlined">{{ $item['icon'] }}</span>
                     <p class="text-sm font-medium leading-normal">{{ $item['label'] }}</p>
                 </a>
             @endforeach
+
+            {{-- Logout form --}}
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                @csrf
+            </form>
         </div>
     </div>
 </aside>

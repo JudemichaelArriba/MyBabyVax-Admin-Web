@@ -2,7 +2,8 @@
 
 @section('title', 'Dashboard')
 @section('page-title', 'Admin Dashboard')
-@section('page-subtitle', "Welcome back, Admin Name! Here's a summary of the system.") {{-- Placeholder name --}}
+@section('page-subtitle', 'Welcome back, ' . $user->name . '!')
+
 
 @section('content')
 <div class="flex flex-col flex-1 space-y-4 h-full">
